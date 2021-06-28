@@ -5,6 +5,7 @@ import { getUserId } from "../../modules/auth/redux/selectors";
 import axios from "axios";
 import { API_URL } from "../constants";
 import { setUserId } from "../../modules/auth/redux/actions";
+import { apiService } from "../services/apiService";
 
 const NavBar: FC = () => {
     const history = useHistory();
@@ -15,13 +16,7 @@ const NavBar: FC = () => {
 
     const onLogOut = async () => {
         try {
-            await axios.post(
-                `${API_URL}/auth/sign-out`,
-                {},
-                {
-                    withCredentials: true,
-                }
-            );
+            await apiService.post(`${API_URL}/auth/sign-out`);
 
             dispatch(setUserId(""));
         } catch (e) {}

@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { setUserId } from "../redux/actions";
 import { API_URL } from "../../../common/constants";
 import { useHistory } from "react-router-dom";
+import { apiService } from "../../../common/services/apiService";
+import { User } from "../../../common/types";
 
 const AuthPage: FC = () => {
     const [username, setUsername] = useState("");
@@ -18,13 +20,9 @@ const AuthPage: FC = () => {
 
     const onSubmit = async (endpoint: string) => {
         try {
-            const { data } = await axios.post(
+            const { data } = await apiService.post<User>(
                 `${API_URL}/auth/${endpoint}`,
-                {
-                    username,
-                    password,
-                },
-                { withCredentials: true }
+                { username, password }
             );
 
             dispatch(setUserId(data._id));
