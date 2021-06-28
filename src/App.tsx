@@ -9,6 +9,7 @@ import { User } from "./common/types";
 import { useDispatch } from "react-redux";
 import { setUserId } from "./modules/auth/redux/actions";
 import BeautifulLoader from "./common/components/BeautifulLoader";
+import FileDownload from "./modules/file/components/FileDownload";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,9 @@ const App = () => {
             <Router>
                 <NavBar />
                 <Switch>
+                    <Route path={"/download/:id"}>
+                        <FileDownload />
+                    </Route>
                     <Route path="/auth-page">
                         <AuthPage />
                     </Route>

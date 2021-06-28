@@ -7,6 +7,7 @@ import { getUserId } from "../../auth/redux/selectors";
 import { apiService } from "../../../common/services/apiService";
 import ErrorSpan from "../../../common/components/ErrorSpan";
 import { deleteFile } from "../redux/actions";
+import { CLIENT_URL } from "../../../common/constants";
 
 type Props = {
     file: File;
@@ -33,6 +34,12 @@ const FileCard: FC<Props> = ({ file }) => {
         }
     };
 
+    const onCopyClick = async () => {
+        const url = `${CLIENT_URL}/download/${file._id}`;
+
+        await navigator.clipboard.writeText(url);
+    };
+
     return (
         <div className="FileCard card w-75">
             <div className="card-body">
@@ -46,12 +53,16 @@ const FileCard: FC<Props> = ({ file }) => {
                 >
                     <a
                         className="btn btn-outline-primary"
-                        href={`http://localhost:4000/files/download/${file._id}`}
+                        href={`${CLIENT_URL}/download/${file._id}`}
                         download={file.name}
                     >
                         Download
                     </a>
-                    <button type="button" className="btn btn-outline-primary">
+                    <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        onClick={onCopyClick}
+                    >
                         Copy url
                     </button>
                     {isOwnedByCurrentUser && (
