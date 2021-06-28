@@ -17,7 +17,9 @@ const NavBar: FC = () => {
             await apiService.post("/auth/sign-out");
 
             dispatch(setUserId(""));
-        } catch (e) {}
+        } catch (e) {
+            console.error(e?.response?.data?.message || e.message);
+        }
     };
 
     return (
