@@ -1,11 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { API_URL } from "../constants";
-
-type ApiService = {
-    post<T>(url: string, data: any): AxiosResponse<T>;
-    get<T>(url: string): AxiosResponse<T>;
-    delete(url: string): void;
-};
 
 export const apiService = {
     post: async <T>(url: string, data: any = {}) => {
@@ -22,5 +16,17 @@ export const apiService = {
 
     delete: async (url: string) => {
         await axios.delete(`${API_URL}${url}`, { withCredentials: true });
+    },
+
+    upload: async <T>(url: string, file: File | null) => {
+        const formData = new FormData();
+        formData.append("userFile", file!);
+
+        return await axios.post<T>(`${API_URL}${url}`, formData, {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
     },
 };

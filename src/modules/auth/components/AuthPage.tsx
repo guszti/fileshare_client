@@ -5,6 +5,7 @@ import { setUserId } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 import { apiService } from "../../../common/services/apiService";
 import { User } from "../../../common/types";
+import ErrorSpan from "../../../common/components/ErrorSpan";
 
 const AuthPage: FC = () => {
     const [username, setUsername] = useState("");
@@ -66,7 +67,7 @@ const AuthPage: FC = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                {error && <span className="error">{error}</span>}
+                {error && <ErrorSpan error={error} />}
                 <div
                     className="buttons btn-group"
                     role="group"

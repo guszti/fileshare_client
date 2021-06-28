@@ -2,8 +2,6 @@ import React, { FC } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserId } from "../../modules/auth/redux/selectors";
-import axios from "axios";
-import { API_URL } from "../constants";
 import { setUserId } from "../../modules/auth/redux/actions";
 import { apiService } from "../services/apiService";
 
@@ -26,8 +24,8 @@ const NavBar: FC = () => {
         <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                    <Link to="/files" className="nav-link px-2 link-dark">
-                        Files
+                    <Link to="/dashboard" className="nav-link px-2 link-dark">
+                        File Paradise
                     </Link>
                 </li>
             </ul>
