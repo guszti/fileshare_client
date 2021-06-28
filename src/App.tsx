@@ -1,23 +1,19 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import SignUp from "./modules/auth/components/SignUp";
-import SignIn from "./modules/auth/components/SignIn";
 import FilesPage from "./modules/file/components/FilesPage";
 import NavBar from "./common/components/NavBar";
+import AuthPage from "./modules/auth/components/AuthPage";
 
 const App = () => (
-    <div className="App">
+    <div className="container">
         <Router>
             <NavBar />
             <Switch>
-                <Route path="/sign-up">
-                    <SignUp />
+                <Route path="/auth-page">
+                    <AuthPage />
                 </Route>
-                <Route path="/sign-in">
-                    <SignIn />
-                </Route>
-                <Route path="/files">
+                <Route path="/dashboard">
                     <FilesPage />
                 </Route>
             </Switch>

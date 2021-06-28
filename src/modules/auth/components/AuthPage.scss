@@ -1,0 +1,17 @@
+.AuthPage {
+    width: 30%;
+    display: flex;
+    margin: auto;
+
+    .error {
+        color: red;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+}
