@@ -40,13 +40,17 @@ const FileCard: FC<Props> = ({ file }) => {
                 <small className="card-text">{`Created by ${file.user.username}, at ${file.createdAt}`}</small>
                 <br />
                 <div
-                    className="buttons btn-group"
+                    className="buttons btn-group mt-3"
                     role="group"
                     aria-label="Basic outlined example"
                 >
-                    <button type="button" className="btn btn-outline-primary">
+                    <a
+                        className="btn btn-outline-primary"
+                        href={`http://localhost:4000/files/download/${file._id}`}
+                        download={file.name}
+                    >
                         Download
-                    </button>
+                    </a>
                     <button type="button" className="btn btn-outline-primary">
                         Copy url
                     </button>
