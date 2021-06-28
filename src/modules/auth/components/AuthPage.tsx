@@ -10,6 +10,8 @@ import ErrorSpan from "../../../common/components/ErrorSpan";
 const AuthPage: FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [usernameError, setUsernameError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
 
     const [error, setError] = useState("");
 
@@ -18,6 +20,10 @@ const AuthPage: FC = () => {
     const history = useHistory();
 
     const onSubmit = async (endpoint: string) => {
+        setError("");
+        setUsernameError("");
+        setPasswordError("");
+
         try {
             const { data } = await apiService.post<User>(`/auth/${endpoint}`, {
                 username,
@@ -28,7 +34,12 @@ const AuthPage: FC = () => {
 
             history.push("/");
         } catch (e) {
-            setError(e.response?.message || "Unknown error.");
+            if (e.response?.data?.fieldErrors) {
+                setUsernameError(e.response?.data?.fieldErrors?.username || "");
+                setPasswordError(e.response?.data?.fieldErrors?.password || "");
+            } else {
+                setError(e.response?.data?.message || "Unknown error.");
+            }
         }
     };
 
@@ -50,6 +61,7 @@ const AuthPage: FC = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
+                    {usernameError && <ErrorSpan error={usernameError} />}
                 </div>
                 <div className="mb-3">
                     <label
@@ -66,6 +78,7 @@ const AuthPage: FC = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    {passwordError && <ErrorSpan error={passwordError} />}
                 </div>
                 {error && <ErrorSpan error={error} />}
                 <div
