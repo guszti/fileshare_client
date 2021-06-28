@@ -1,6 +1,11 @@
 export type File = {
-    id: string;
+    _id: string;
     name: string;
     createdAt: Date;
-    user: string;
+    user: User;
+};
+
+export type User = {
+    _id: string;
+    username: string;
 };

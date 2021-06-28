@@ -7,3 +7,10 @@ export const setFiles = (files: File[]) => ({
         files,
     },
 });
+
+export const deleteFile = (id: string) => ({
+    type: FileActions.DELETE_FILE,
+    payload: {
+        id,
+    },
+});

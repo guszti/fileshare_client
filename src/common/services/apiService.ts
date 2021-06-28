@@ -15,7 +15,7 @@ export const apiService = {
     },
 
     delete: async (url: string) => {
-        await axios.delete(`${API_URL}${url}`, { withCredentials: true });
+        return await axios.delete(`${API_URL}${url}`, { withCredentials: true });
     },
 
     upload: async <T>(url: string, file: File | null) => {

@@ -43,7 +43,7 @@ const FilesPage: FC = () => {
             )}
             {error && <ErrorSpan error={error} />}
             {files.length ? (
-                map(files, (file) => <FileCard key={file.id} file={file} />)
+                map(files, (file) => <FileCard key={file._id} file={file} />)
             ) : (
                 <h3>Nothing to show here yet...</h3>
             )}
