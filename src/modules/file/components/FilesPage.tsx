@@ -8,6 +8,7 @@ import { getFiles } from "../redux/selectors";
 import { map } from "lodash";
 import FileCard from "./FileCard";
 import ErrorSpan from "../../../common/components/ErrorSpan";
+import { getUserId } from "../../auth/redux/selectors";
 
 const FilesPage: FC = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const FilesPage: FC = () => {
     const files = useSelector(getFiles);
 
     const [error, setError] = useState("");
+
+    const userId = useSelector(getUserId);
 
     const fetchFiles = async () => {
         try {
@@ -32,8 +35,12 @@ const FilesPage: FC = () => {
 
     return (
         <div>
-            <FileUpload fetchFiles={fetchFiles} />
-            <hr />
+            {userId && (
+                <>
+                    <FileUpload fetchFiles={fetchFiles} />
+                    <hr />
+                </>
+            )}
             {error && <ErrorSpan error={error} />}
             {files.length ? (
                 map(files, (file) => <FileCard key={file.id} file={file} />)

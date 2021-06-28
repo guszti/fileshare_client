@@ -42,7 +42,7 @@ const App = () => {
                     <Route path="/auth-page">
                         <AuthPage />
                     </Route>
-                    <Route path="/dashboard">
+                    <Route path="/">
                         <FilesPage />
                     </Route>
                 </Switch>

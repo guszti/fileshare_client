@@ -26,7 +26,7 @@ const AuthPage: FC = () => {
 
             dispatch(setUserId(data._id));
 
-            history.push("/dashboard");
+            history.push("/");
         } catch (e) {
             setError(e.response?.message || "Unknown error.");
         }
