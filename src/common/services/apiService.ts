@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { API_URL } from "../constants";
 
 type ApiService = {
     post<T>(url: string, data: any): AxiosResponse<T>;
@@ -8,14 +9,18 @@ type ApiService = {
 
 export const apiService = {
     post: async <T>(url: string, data: any = {}) => {
-        return await axios.post<T>(url, data, { withCredentials: true });
+        return await axios.post<T>(`${API_URL}${url}`, data, {
+            withCredentials: true,
+        });
     },
 
     get: async <T>(url: string) => {
-        return await axios.get<T>(url, { withCredentials: true });
+        return await axios.get<T>(`${API_URL}${url}`, {
+            withCredentials: true,
+        });
     },
 
     delete: async (url: string) => {
-        await axios.delete(url, { withCredentials: true });
+        await axios.delete(`${API_URL}${url}`, { withCredentials: true });
     },
 };

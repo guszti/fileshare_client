@@ -16,7 +16,7 @@ const NavBar: FC = () => {
 
     const onLogOut = async () => {
         try {
-            await apiService.post(`${API_URL}/auth/sign-out`);
+            await apiService.post("/auth/sign-out");
 
             dispatch(setUserId(""));
         } catch (e) {}
