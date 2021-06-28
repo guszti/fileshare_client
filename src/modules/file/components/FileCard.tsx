@@ -40,11 +40,14 @@ const FileCard: FC<Props> = ({ file }) => {
         await navigator.clipboard.writeText(url);
     };
 
+    const createdAt = new Date(file.createdAt);
+    const formattedDate = `${createdAt.getUTCFullYear()}/${createdAt.getUTCMonth()}/${createdAt.getUTCDay()} ${createdAt.getUTCHours()}:${createdAt.getUTCMinutes()}`
+    
     return (
         <div className="FileCard card w-75">
             <div className="card-body">
                 <h5 className="card-title">{file.name}</h5>
-                <small className="card-text">{`Created by ${file.user.username}, at ${file.createdAt}`}</small>
+                <small className="card-text">{`Created by ${file.user.username}, at ${formattedDate}`}</small>
                 <br />
                 <div
                     className="buttons btn-group mt-3"
